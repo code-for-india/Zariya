@@ -1,0 +1,72 @@
+<!DOCTYPE html> <head>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+</head>
+<body>
+    <form id="startWizard" type="get" action="" class="form-horizontal">
+        <!-- we don't need title. do it in a better way! -->
+        <section class="step" data-step-title="Person">
+            <div class="control-group">
+                <label class="control-label" for="reporter">Who is reporting ?</label>
+
+                <div class="controls radio">
+                    <label><input type="radio" name="reporter" value="" checked/>Survivor</label>
+                    <label><input type="radio" name="reporter" value=""/>Friend of Survivor</label>
+                    <label><input type="radio" name="reporter" value=""/>Relative of Survivor</label>
+                    <label><input type="radio" name="reporter" value=""/>Stranger</label>
+                </div>
+            </div>
+
+            <div class="control-group">
+                <label class="control-label" for="assailant">Do you know the assailant ?</label>
+
+                <div class="controls radio">
+                    <label><input type="radio" name="assailant" value="" checked/>Yes</label>
+                    <label><input type="radio" name="assailant" value=""/>No</label>
+                </div>
+            </div>
+        </section>
+
+        <section class="step" data-step-title="Incident">
+            <div class="control-group">
+                <label class="control-label" for="incident">What incident would you like to report</label>
+                <div class="controls radio">
+                    <label><input type="radio" name="incident" value="" checked/>Eve teasing</label>
+                    <label><input type="radio" name="incident" value=""/>Voyeurism</label>
+                    <label><input type="radio" name="incident" value=""/>Acid violence</label>
+                    <label><input type="radio" name="incident" value=""/>Stalking</label>
+                    <label><input type="radio" name="incident" value=""/>Rape</label>
+                    <label><input type="radio" name="incident" value=""/>Disrobing</label>
+                    <label><input type="radio" name="incident" value=""/>Domestic Violence</label>
+                    <label><input type="radio" name="incident" value=""/>Marital Rape</label>
+                    <label><input type="radio" name="incident" value=""/>Other</label>
+                </div>
+            </div>
+        </section>
+
+        <section class="step" data-step-title="Location">
+            <div class="control-group">
+                <label class="control-label" for="location">Location</label>
+                <div class="controls">
+                    <input type="input" name="location" value=""/>
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label" for="time">Time</label>
+                <div class="controls">
+                    <input type="input" name="time" value=""/>
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label" for="date">Date</label>
+                <div class="controls">
+                    <input type="input" name="date" value=""/>
+                </div>
+            </div>
+        </section>
+    </form>
+
+    <script src="js/jquery-1.11.1.min.js"></script>
+    <script src="js/jquery.easyWizard.js"></script>
+    <script src="js/script.js"></script>
+</body>
