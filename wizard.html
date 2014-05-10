@@ -1,0 +1,46 @@
+<!DOCTYPE html> <head>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+</head>
+<body>
+    <form id="startWizard" type="get" action="" class="form-horizontal">
+        <!-- we don't need title. do it in a better way! -->
+        <section class="step" data-step-title="Welcome">
+            <div class="control-group">
+                <label class="control-label" for="inputPassword">Password</label>
+
+                <div class="controls radio">
+                    <label><input type="radio" name="language" value="english" checked/>English</label>
+                    <label><input type="radio" name="language" value="hindi"/>Hindi</label>
+                </div>
+            </div>
+        </section>
+
+        <section class="step" data-step-title="Informations">
+            <div class="control-group">
+                <label class="control-label" for="inputName">Name</label>
+                <div class="controls">
+                    <input type="text" id="inputName" placeholder="Name" class="input-xlarge" required/>
+                </div>
+            </div>
+
+            <div class="control-group">
+                <label class="control-label" for="inputEmail">Email (optional)</label>
+                <div class="controls">
+                    <input type="email" id="inputEmail" placeholder="Email" class="input-xlarge" />
+                </div>
+            </div>
+
+            <div class="control-group">
+                <label class="control-label" for="inputEmail">City</label>
+                <div class="controls">
+                    <input type="email" id="inputCity" placeholder="City" class="input-xlarge" required />
+                </div>
+            </div>
+        </section>
+    </form>
+
+    <script src="js/jquery-1.11.1.min.js"></script>
+    <script src="js/jquery.easyWizard.js"></script>
+    <script src="js/script.js"></script>
+</body>
