@@ -1,53 +1,80 @@
-<!DOCTYPE html> <head>
+<!DOCTYPE html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale = 1.0, maximum-scale=1.0, user-scalable=no" />
+    <link rel="stylesheet" type="text/css" media="all" href="css/hamburger.css" />
     <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/style.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" media="all" href="css/style.css" />
 </head>
+
 <body>
-    <form id="startWizard" type="get" action="" class="form-horizontal">
-        <!-- we don't need title. do it in a better way! -->
-        <section class="step" data-step-title="Welcome">
-            <div class="control-group">
-                <label class="control-label" for="language">Select language</label>
-
-                <div class="controls radio">
-                    <label><input type="radio" name="language" value="english" checked/>English</label>
-                    <label><input type="radio" name="language" value="hindi"/>Hindi</label>
-                </div>
+    <div id="container">
+        <header>
+            <div id="hamburger">
+                <div></div>
+                <div></div>
+                <div></div>
             </div>
-        </section>
+            <div class="title">Zariya</div>
+        </header>
+        <nav class="mobileNav clear">
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Track</a></li>
+                <li><a href="#">Map</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Settings</a></li>
+            </ul>
+        </nav>
+        <div id="contentLayer"></div>
+        <div id="content">
+            <form id="startWizard" type="get" action="" class="form-horizontal">
+                <!-- we don't need title. do it in a better way! -->
+                <section class="step" data-step-title="Welcome">
+                    <div class="control-group">
+                        <label class="control-label" for="language">Select language</label>
 
-        <section class="step" data-step-title="Informations">
-            <div class="control-group">
-                <label class="control-label" for="inputName">Name</label>
-                <div class="controls">
-                    <input type="text" id="inputName" placeholder="Name" class="input-xlarge" required/>
-                </div>
-            </div>
+                        <div class="controls radio">
+                            <label><input type="radio" name="language" value="english" checked/>English</label>
+                            <label><input type="radio" name="language" value="hindi"/>Hindi</label>
+                        </div>
+                    </div>
+                </section>
 
-            <div class="control-group">
-                <label class="control-label" for="inputEmail">Email (optional)</label>
-                <div class="controls">
-                    <input type="email" id="inputEmail" placeholder="Email" class="input-xlarge" />
-                </div>
-            </div>
+                <section class="step" data-step-title="Informations">
+                    <div class="control-group">
+                        <label class="control-label" for="inputName">Name</label>
+                        <div class="controls">
+                            <input type="text" id="inputName" placeholder="Name" class="input-xlarge" required/>
+                        </div>
+                    </div>
 
-            <div class="control-group">
-                <label class="control-label" for="inputEmail">City</label>
-                <div class="controls">
-                    <input type="email" id="inputCity" placeholder="City" class="input-xlarge" required />
-                </div>
-            </div>
+                    <div class="control-group">
+                        <label class="control-label" for="inputEmail">Email (optional)</label>
+                        <div class="controls">
+                            <input type="email" id="inputEmail" placeholder="Email" class="input-xlarge" />
+                        </div>
+                    </div>
 
-            <div class="control-group">
-                <label class="control-label" for="inputEmail">Phone</label>
-                <div class="controls">
-                    <input type="tel" id="inputPhone" placeholder="Phone" class="input-xlarge" required />
-                </div>
-            </div>
-        </section>
-    </form>
+                    <div class="control-group">
+                        <label class="control-label" for="inputEmail">City</label>
+                        <div class="controls">
+                            <input type="email" id="inputCity" placeholder="City" class="input-xlarge" required />
+                        </div>
+                    </div>
 
+                    <div class="control-group">
+                        <label class="control-label" for="inputEmail">Phone</label>
+                        <div class="controls">
+                            <input type="tel" id="inputPhone" placeholder="Phone" class="input-xlarge" required />
+                        </div>
+                    </div>
+                </section>
+            </form>
+        </div>
+    </div>
     <script src="js/jquery-1.11.1.min.js"></script>
+    <script src="js/jquery-ui.js"></script>
+    <script src="js/hamburger.js"></script>
     <script src="js/jquery.easyWizard.js"></script>
     <script src="js/script.js"></script>
 </body>
