@@ -1,143 +1,170 @@
-<!DOCTYPE html> <head>
-<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
+<!DOCTYPE html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale = 1.0, maximum-scale=1.0, user-scalable=no" />
+    <link rel="stylesheet" type="text/css" media="all" href="css/hamburger.css" />
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
 </head>
 <body>
-    <form id="startWizard" method="post" action="" class="form-horizontal">
-        <!-- we don't need title. do it in a better way! -->
-        <section class="step" data-step-title="Person">
-            <div class="control-group">
-                <label class="control-label" for="person">Who is reporting ?</label>
+    <div id="container">
+        <header>
+            <div id="hamburger">
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+            <div class="title">Zariya</div>
+        </header>
+        <nav class="mobileNav clear">
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Track</a></li>
+                <li><a href="#">Map</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Settings</a></li>
+            </ul>
+        </nav>
+        <div id="contentLayer"></div>
+        <div id="content">
+            <form id="startWizard" method="post" action="" class="form-horizontal">
+                <!-- we don't need title. do it in a better way! -->
+                <section class="step" data-step-title="Person">
+                    <div class="control-group">
+                        <label class="control-label" for="person">Who is reporting ?</label>
 
-                <div class="controls radio">
-                    <label><input class="m1" type="radio" name="person" value="SURVIVOR"/>Survivor</label>
-                    <label><input class="m1" type="radio" name="person" value="FRIEND_OF_SURVIVOR"/>Friend of Survivor</label>
-                    <label><input class="m1" type="radio" name="person" value="RELATIVE_OF_SURVIVOR"/>Relative of Survivor</label>
-                    <label><input class="m1" type="radio" name="person" value="NOT_RELATED"/>Not Related</label>
-                </div>
-            </div>
+                        <div class="controls radio">
+                            <label><input class="m1" type="radio" name="person" value="SURVIVOR"/>Survivor</label>
+                            <label><input class="m1" type="radio" name="person" value="FRIEND_OF_SURVIVOR"/>Friend of Survivor</label>
+                            <label><input class="m1" type="radio" name="person" value="RELATIVE_OF_SURVIVOR"/>Relative of Survivor</label>
+                            <label><input class="m1" type="radio" name="person" value="NOT_RELATED"/>Not Related</label>
+                        </div>
+                    </div>
 
-            <div id="onSurvivor" style="display:none;" class="control-group">
-                <label class="control-label" for="firstTimeCrime">Is this the first time you are facing this crime?</label>
+                    <div id="onSurvivor" style="display:none;" class="control-group">
+                        <label class="control-label" for="firstTimeCrime">Is this the first time you are facing this crime?</label>
 
-                <div class="controls radio">
-                    <label><input type="radio" name="firstTimeCrime" value="Y" />Yes</label>
-                    <label><input type="radio" name="firstTimeCrime" value="N"/>No</label>
-                    <input type="radio" style="display:none;" name="firstTimeCrime" value="X" checked/>
-                </div>
-            </div>
+                        <div class="controls radio">
+                            <label><input type="radio" name="firstTimeCrime" value="Y" />Yes</label>
+                            <label><input type="radio" name="firstTimeCrime" value="N"/>No</label>
+                            <input type="radio" style="display:none;" name="firstTimeCrime" value="X" checked/>
+                        </div>
+                    </div>
 
-            <div class="control-group">
-                <label class="control-label" for="doYouKnow">Do you know the assailant ?</label>
+                    <div class="control-group">
+                        <label class="control-label" for="doYouKnow">Do you know the assailant ?</label>
 
-                <div class="controls radio">
-                    <label><input type="radio" name="doYouKnow" value="Y" checked/>Yes</label>
-                    <label><input type="radio" name="doYouKnow" value="N"/>No</label>
-                </div>
-            </div>
-        </section>
+                        <div class="controls radio">
+                            <label><input type="radio" name="doYouKnow" value="Y" checked/>Yes</label>
+                            <label><input type="radio" name="doYouKnow" value="N"/>No</label>
+                        </div>
+                    </div>
+                </section>
 
-        <section class="step" data-step-title="Incident">
-            <div class="control-group">
-                <label class="control-label" for="incidentList">What incident would you like to report</label>
-                <div class="controls radio">
-                    <label><input type="radio" name="incidentList" value="EVE_TEASING" checked/>Eve teasing</label>
-                    <label><input type="radio" name="incidentList" value="VOYEURISM"/>Voyeurism</label>
-                    <label><input type="radio" name="incidentList" value="ACID_VIOLENCE"/>Acid violence</label>
-                    <label><input type="radio" name="incidentList" value="STALKING"/>Stalking</label>
-                    <label><input type="radio" name="incidentList" value="RAPE"/>Rape</label>
-                    <label><input type="radio" name="incidentList" value="DISROBING"/>Disrobing</label>
-                    <label><input type="radio" name="incidentList" value="DOMESTIC_VIOLENCE"/>Domestic Violence</label>
-                    <label><input type="radio" name="incidentList" value="MARITAL_RAPE"/>Marital Rape</label>
-                    <label><input type="radio" name="incidentList" value="OTHER_INCIDENT"/>Other</label>
-                </div>
-            </div>
-        </section>
+                <section class="step" data-step-title="Incident">
+                    <div class="control-group">
+                        <label class="control-label" for="incidentList">What incident would you like to report</label>
+                        <div class="controls radio">
+                            <label><input type="radio" name="incidentList" value="EVE_TEASING" checked/>Eve teasing</label>
+                            <label><input type="radio" name="incidentList" value="VOYEURISM"/>Voyeurism</label>
+                            <label><input type="radio" name="incidentList" value="ACID_VIOLENCE"/>Acid violence</label>
+                            <label><input type="radio" name="incidentList" value="STALKING"/>Stalking</label>
+                            <label><input type="radio" name="incidentList" value="RAPE"/>Rape</label>
+                            <label><input type="radio" name="incidentList" value="DISROBING"/>Disrobing</label>
+                            <label><input type="radio" name="incidentList" value="DOMESTIC_VIOLENCE"/>Domestic Violence</label>
+                            <label><input type="radio" name="incidentList" value="MARITAL_RAPE"/>Marital Rape</label>
+                            <label><input type="radio" name="incidentList" value="OTHER_INCIDENT"/>Other</label>
+                        </div>
+                    </div>
+                </section>
 
-        <section class="step" data-step-title="Location">
-            <div class="control-group">
-                <label class="control-label" for="location">Location</label>
-                <div class="controls">
-                    <input id="location" type="input" name="location" value=""/>
-                    <input type="hidden" name="locationLat" id="lat" value="" />
-                    <input type="hidden" name="locationLng" id="lng" value="" />
-                </div>
-            </div>
-            <div class="control-group">
-                <label class="control-label" for="date">Date</label>
-                <div class="controls">
-                    <input type="input" id="incidentDate" name="incidentDate" value=""/>
-                </div>
-            </div>
-             <div class="control-group">
-                <label class="control-label" for="time">Time</label>
-                <div class="controls">
-                    <input type="input" name="incidentTime" value=""/>
-                </div>
-            </div>
-        </section>
-         <section class="step" data-step-title="Submit">
-            <div class="control-group">
-                <label class="control-label" for="firstName">First Name</label>
-                <div class="controls">
-                    <input type="input" name="firstName" value=""/>
-                </div>
-            </div>
-            <div class="control-group">
-                <label class="control-label" for="lastName">Last Name</label>
-                <div class="controls">
-                    <input type="input" name="lastName" value=""/>
-                </div>
-            </div>
-            <div class="control-group">
-                <label class="control-label" for="email">Email</label>
-                <div class="controls">
-                    <input type="input" name="email" value=""/>
-                </div>
-            </div>
-            <div class="control-group">
-                <label class="control-label" for="number">Phone</label>
-                <div class="controls">
-                    <input type="input" name="number" value=""/>
-                </div>
-            </div>
-        </section>
+                <section class="step" data-step-title="Location">
+                    <div class="control-group">
+                        <label class="control-label" for="location">Location</label>
+                        <div class="controls">
+                            <input id="location" type="input" name="location" value=""/>
+                            <input type="hidden" name="locationLat" id="lat" value="" />
+                            <input type="hidden" name="locationLng" id="lng" value="" />
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label" for="date">Date</label>
+                        <div class="controls">
+                            <input type="input" id="incidentDate" name="incidentDate" value=""/>
+                        </div>
+                    </div>
+                     <div class="control-group">
+                        <label class="control-label" for="time">Time</label>
+                        <div class="controls">
+                            <input type="input" name="incidentTime" value=""/>
+                        </div>
+                    </div>
+                </section>
+                 <section class="step" data-step-title="Submit">
+                    <div class="control-group">
+                        <label class="control-label" for="firstName">First Name</label>
+                        <div class="controls">
+                            <input type="input" name="firstName" value=""/>
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label" for="lastName">Last Name</label>
+                        <div class="controls">
+                            <input type="input" name="lastName" value=""/>
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label" for="email">Email</label>
+                        <div class="controls">
+                            <input type="input" name="email" value=""/>
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label" for="number">Phone</label>
+                        <div class="controls">
+                            <input type="input" name="number" value=""/>
+                        </div>
+                    </div>
+                </section>
 
-        <section class="step" data-step-title="Additional Information">
-            <div class="control-group">
-                <label class="control-label" for="info">Additonal Information</label>
-                <div class="controls">
-                    <textarea name="info"></textarea>
-                </div>
-            </div>
-        </section>
+                <section class="step" data-step-title="Additional Information">
+                    <div class="control-group">
+                        <label class="control-label" for="info">Additonal Information</label>
+                        <div class="controls">
+                            <textarea name="info"></textarea>
+                        </div>
+                    </div>
+                </section>
 
-        <section class="step" data-step-title="Submit">
-            <div class="control-group">
-                <label class="control-label" for="info">Name</label>
-                <div class="controls">
-                    <input type="input" name="name" value=""/>
-                </div>
-                </div>
-            </div>
-            <div class="control-group">
-                <label class="control-label" for="info">Email</label>
-                <div class="controls">
-                    <input type="email" name="email" value=""/>
-                </div>
-            </div>
-            <div class="control-group">
-                <label class="control-label" for="info">Phone</label>
-                <div class="controls">
-                    <input type="tel" name="phone" value=""/>
-                </div>
-            </div>
-        </section>
-    </form>
+                <section class="step" data-step-title="Submit">
+                    <div class="control-group">
+                        <label class="control-label" for="info">Name</label>
+                        <div class="controls">
+                            <input type="input" name="name" value=""/>
+                        </div>
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label" for="info">Email</label>
+                        <div class="controls">
+                            <input type="email" name="email" value=""/>
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label" for="info">Phone</label>
+                        <div class="controls">
+                            <input type="tel" name="phone" value=""/>
+                        </div>
+                    </div>
+                </section>
+            </form>
+        </div>
+    </div>
 
     <script src="js/jquery-1.11.1.min.js"></script>
+    <script src="js/jquery-ui.js"></script>
     <script src="js/jquery.easyWizard.js"></script>
     <script src="js/script.js"></script>
-    <script type="text/javascript" src="js/app.js"></script>
+    <script src="js/hamburger.js"></script>
+    <script src="js/app.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
 </body>
