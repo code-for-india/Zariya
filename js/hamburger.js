@@ -1,53 +1,55 @@
-/**
- * hamburger.js
- *
- * Mobile Menu Hamburger
- * =====================
- * A hamburger menu for mobile websites
- *
- * Created by Thomas Zinnbauer YMC AG  |  http://www.ymc.ch
- * Date: 21.05.13
- */
 
 jQuery(document).ready(function() {
-
-    //Open the menu
     jQuery("#hamburger").click(function() {
-
-        //set the width of primary content container -> content should not scale while animating
         var contentWidth = jQuery('#content').width();
-
-        //set the content with the width that it has originally
         jQuery('#content').css('width', contentWidth);
+        jQuery('#container').bind('touchmove', function(e){e.preventDefault();});
 
-        //display a layer to disable clicking and scrolling on the content while menu is shown
-        jQuery('#contentLayer').css('display', 'block');
+        var current = jQuery("nav").css("margin-left"),
+          val = "0%",
+          layer = "block";
+          opacity = 0.5,
+          ham = -10;
 
-        //disable all scrolling on mobile devices while menu is shown
-        jQuery('#container').bind('touchmove', function(e){e.preventDefault()});
+        if(current === "0px") {
+          val = "-70%";
+          layer = "none";
+          opacity = 0;
+          ham = 0;
+        } else {
+          jQuery('#contentLayer').css('display', layer);
+        }
 
-        //set margin for the whole container with a jquery UI animation
-        jQuery("#container").animate({"marginLeft": ["70%", 'easeOutExpo']}, {
+        jQuery("nav").animate({"margin-left": [val, 'easeOutExpo']}, {
             duration: 700
         });
 
-    });
+        jQuery('#hamburger').animate({"left": [ham, 'easeOutExpo']}, {
+            duration: 700
+        });
 
-    //close the menu
-    jQuery("#contentLayer").click(function() {
-
-        //enable all scrolling on mobile devices when menu is closed
-        jQuery('#container').unbind('touchmove');
-
-        //set margin for the whole container back to original state with a jquery UI animation
-        jQuery("#container").animate({"marginLeft": ["0", 'easeOutExpo']}, {
+        jQuery("#contentLayer").animate({"opacity": [opacity, 'easeOutExpo']}, {
             duration: 700,
             complete: function() {
-                  jQuery('#content').css('width', 'auto');
-                jQuery('#contentLayer').css('display', 'none');
-
+              jQuery('#contentLayer').css('display', layer);
             }
         });
     });
 
+    //close the menu
+    jQuery("#contentLayer").click(function() {
+        jQuery('#container').unbind('touchmove');
+        jQuery("nav").animate({"margin-left": ["-70%", 'easeOutExpo']}, {
+            duration: 700
+        });
+        jQuery("#contentLayer").animate({"opacity": [0, 'easeOutExpo']}, {
+            duration: 700,
+            complete: function() {
+              jQuery('#contentLayer').css('display', 'none');
+            }
+        });
+        jQuery('#hamburger').animate({"left": [0, 'easeOutExpo']}, {
+            duration: 700
+        });
+    });
 });

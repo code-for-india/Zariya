@@ -14,11 +14,11 @@ Header is relative so z-index: 1 guarantees always displayed on top
 */
 header {
     background-color: #5EA97F;
-    padding: 10px;
+    padding: 10px 10px 10px 0px;
     text-decoration: none;
     position: fixed;
     width: 100%;
-    z-index: 1;
+    z-index: 5;
 }
 
 /*
@@ -26,7 +26,7 @@ using background color is important to cover the menu
 position absolute isset to cover the whole viewport
 */
 #content {
-    background-color: #FFFFFF;
+    background-color: #eee;
     padding: 52px 10px 10px 10px;
     position: relative;
     width: auto;
@@ -43,7 +43,7 @@ the hamburger button with a little gradient effekt
     display: block;
     height: 19px;
     position: relative;
-    width: 25px;
+    width: 20px;
     float: left;
     padding-right: 10px;
 }
@@ -58,14 +58,17 @@ The white stripes in the hamburger button
     width: 90%;
 }
 
+.clear {
+    clear: 'both';
+}
 /*
 The navigation container in the background
 */
 nav {
-    left: 0px;
-    top: 0px;
+    top: 40px;
+    margin-left: -70%;
     position: fixed;
-    z-index: 0;
+    z-index: 2;
     width: 70%;
     height: 100%;
     -webkit-box-sizing: border-box;
@@ -118,7 +121,9 @@ so that the content is unclickable while menu is shown
     position: absolute;
     right: 0;
     top: 0;
-    width: 30%;
-    z-index: 5;
+    width: 100%;
+    z-index: 1;
     min-height: 1062px;
+    background: #000;
+    opacity: 0;
 }
