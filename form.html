@@ -1,45 +1,56 @@
 <!DOCTYPE html> <head>
+<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
 </head>
 <body>
-    <form id="startWizard" type="get" action="" class="form-horizontal">
+    <form id="startWizard" method="post" action="" class="form-horizontal">
         <!-- we don't need title. do it in a better way! -->
         <section class="step" data-step-title="Person">
             <div class="control-group">
-                <label class="control-label" for="reporter">Who is reporting ?</label>
+                <label class="control-label" for="person">Who is reporting ?</label>
 
                 <div class="controls radio">
-                    <label><input type="radio" name="reporter" value="" checked/>Survivor</label>
-                    <label><input type="radio" name="reporter" value=""/>Friend of Survivor</label>
-                    <label><input type="radio" name="reporter" value=""/>Relative of Survivor</label>
-                    <label><input type="radio" name="reporter" value=""/>Stranger</label>
+                    <label><input class="m1" type="radio" name="person" value="SURVIVOR"/>Survivor</label>
+                    <label><input class="m1" type="radio" name="person" value="FRIEND_OF_SURVIVOR"/>Friend of Survivor</label>
+                    <label><input class="m1" type="radio" name="person" value="RELATIVE_OF_SURVIVOR"/>Relative of Survivor</label>
+                    <label><input class="m1" type="radio" name="person" value="NOT_RELATED"/>Not Related</label>
+                </div>
+            </div>
+
+            <div id="onSurvivor" style="display:none;" class="control-group">
+                <label class="control-label" for="firstTimeCrime">Is this the first time you are facing this crime?</label>
+
+                <div class="controls radio">
+                    <label><input type="radio" name="firstTimeCrime" value="Y" />Yes</label>
+                    <label><input type="radio" name="firstTimeCrime" value="N"/>No</label>
+                    <input type="radio" style="display:none;" name="firstTimeCrime" value="X" checked/>
                 </div>
             </div>
 
             <div class="control-group">
-                <label class="control-label" for="assailant">Do you know the assailant ?</label>
+                <label class="control-label" for="doYouKnow">Do you know the assailant ?</label>
 
                 <div class="controls radio">
-                    <label><input type="radio" name="assailant" value="" checked/>Yes</label>
-                    <label><input type="radio" name="assailant" value=""/>No</label>
+                    <label><input type="radio" name="doYouKnow" value="Y" checked/>Yes</label>
+                    <label><input type="radio" name="doYouKnow" value="N"/>No</label>
                 </div>
             </div>
         </section>
 
         <section class="step" data-step-title="Incident">
             <div class="control-group">
-                <label class="control-label" for="incident">What incident would you like to report</label>
+                <label class="control-label" for="incidentList">What incident would you like to report</label>
                 <div class="controls radio">
-                    <label><input type="radio" name="incident" value="" checked/>Eve teasing</label>
-                    <label><input type="radio" name="incident" value=""/>Voyeurism</label>
-                    <label><input type="radio" name="incident" value=""/>Acid violence</label>
-                    <label><input type="radio" name="incident" value=""/>Stalking</label>
-                    <label><input type="radio" name="incident" value=""/>Rape</label>
-                    <label><input type="radio" name="incident" value=""/>Disrobing</label>
-                    <label><input type="radio" name="incident" value=""/>Domestic Violence</label>
-                    <label><input type="radio" name="incident" value=""/>Marital Rape</label>
-                    <label><input type="radio" name="incident" value=""/>Other</label>
+                    <label><input type="radio" name="incidentList" value="EVE_TEASING" checked/>Eve teasing</label>
+                    <label><input type="radio" name="incidentList" value="VOYEURISM"/>Voyeurism</label>
+                    <label><input type="radio" name="incidentList" value="ACID_VIOLENCE"/>Acid violence</label>
+                    <label><input type="radio" name="incidentList" value="STALKING"/>Stalking</label>
+                    <label><input type="radio" name="incidentList" value="RAPE"/>Rape</label>
+                    <label><input type="radio" name="incidentList" value="DISROBING"/>Disrobing</label>
+                    <label><input type="radio" name="incidentList" value="DOMESTIC_VIOLENCE"/>Domestic Violence</label>
+                    <label><input type="radio" name="incidentList" value="MARITAL_RAPE"/>Marital Rape</label>
+                    <label><input type="radio" name="incidentList" value="OTHER_INCIDENT"/>Other</label>
                 </div>
             </div>
         </section>
@@ -48,19 +59,47 @@
             <div class="control-group">
                 <label class="control-label" for="location">Location</label>
                 <div class="controls">
-                    <input type="input" name="location" value=""/>
-                </div>
-            </div>
-            <div class="control-group">
-                <label class="control-label" for="time">Time</label>
-                <div class="controls">
-                    <input type="input" name="time" value=""/>
+                    <input id="location" type="input" name="location" value=""/>
+                    <input type="hidden" name="locationLat" id="lat" value="" />
+                    <input type="hidden" name="locationLng" id="lng" value="" />
                 </div>
             </div>
             <div class="control-group">
                 <label class="control-label" for="date">Date</label>
                 <div class="controls">
-                    <input type="input" name="date" value=""/>
+                    <input type="input" id="incidentDate" name="incidentDate" value=""/>
+                </div>
+            </div>
+             <div class="control-group">
+                <label class="control-label" for="time">Time</label>
+                <div class="controls">
+                    <input type="input" name="incidentTime" value=""/>
+                </div>
+            </div>
+        </section>
+         <section class="step" data-step-title="Submit">
+            <div class="control-group">
+                <label class="control-label" for="firstName">First Name</label>
+                <div class="controls">
+                    <input type="input" name="firstName" value=""/>
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label" for="lastName">Last Name</label>
+                <div class="controls">
+                    <input type="input" name="lastName" value=""/>
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label" for="email">Email</label>
+                <div class="controls">
+                    <input type="input" name="email" value=""/>
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label" for="number">Phone</label>
+                <div class="controls">
+                    <input type="input" name="number" value=""/>
                 </div>
             </div>
         </section>
@@ -69,4 +108,5 @@
     <script src="js/jquery-1.11.1.min.js"></script>
     <script src="js/jquery.easyWizard.js"></script>
     <script src="js/script.js"></script>
+    <script type="text/javascript" src="js/app.js"></script>
 </body>
