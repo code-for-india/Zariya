@@ -1,0 +1,147 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>changePage + listview (dynamic) - jsFiddle demo by hungerpain</title>
+  
+  <script type='text/javascript' src='//code.jquery.com/jquery-1.9.1.js'></script>
+  
+  
+  
+  
+  <script type="text/javascript" src="http://code.jquery.com/mobile/1.3.0-beta.1/jquery.mobile-1.3.0-beta.1.js"></script>
+  <link rel="stylesheet" type="text/css" href="http://code.jquery.com/mobile/1.3.0-beta.1/jquery.mobile-1.3.0-beta.1.css">
+  
+  <link rel="stylesheet" type="text/css" href="/css/result-light.css">
+  
+  <style type='text/css'>
+    .ui-bar {
+    padding :5px 0px 5px 0px !important;
+    margin :5px 0px 5px 0px !important;
+}
+  </style>
+  
+
+
+<script type='text/javascript'>//<![CDATA[ 
+
+//assuming this comes from an ajax call
+var info = [{
+    "id": 0,
+        "categories":"Eve Teasing,Voyeurism,Other incident",
+		"incidentDate":"2014-05-10T00:00:00.000Z",
+		"incidentTime":"09:30:41",
+		"location":"Andheri Station",
+		"latitude":"100.1171389",
+		"longitude":"100.846563",
+		"comment":"He always wears a red scarf around neck. People call him Raju Ustad",
+		"knownAssailant":"Yes",
+		"status":"No Action Yet",
+		"reporterRelation":"SURVIVOR"}]
+}, {
+    "id": 1,
+        "categories":"Eve Teasing",
+		"incidentDate":"2014-05-06T00:00:00.000Z",
+		"incidentTime":"09:30:41",
+		"location":"Andheri Station",
+		"latitude":"100.1171389",
+		"longitude":"100.846563",
+		"comment":"Ramesh Babu of Tea Stall was teasing and using vulgar words",
+		"knownAssailant":"Yes",
+		"status":"Police have issued Warning",
+		"reporterRelation":"Relative Of Survivor"}]
+}];
+
+//pageinit event for first page
+//triggers only once
+//write all your on-load functions and event handlers pertaining to page1
+$(document).on("pageinit", "#info-page", function () {
+
+
+    //set up string for adding <li/>
+    var li = "";
+    //container for $li to be added
+    $.each(info, function (i, name) {
+        //add the <li> to "li" variable
+        //note the use of += in the variable
+        //meaning I'm adding to the existing data. not replacing it.
+        //store index value in array as id of the <a> tag
+        li += '<li><a href="#" id="' + i + '" class="info-go">' + name.name + '</a></li>';
+    });
+    //append list to ul
+    $("#prof-list").append(li).promise().done(function () {
+        //wait for append to finish - thats why you use a promise()
+        //done() will run after append is done
+        //add the click event for the redirection to happen to #details-page
+        $(this).on("click", ".info-go", function (e) {
+            e.preventDefault();
+            //store the information in the next page's data
+            $("#details-page").data("info", info[this.id]);
+            //change the page # to second page. 
+            //Now the URL in the address bar will read index.html#details-page
+            //where #details-page is the "id" of the second page
+            //we're gonna redirect to that now using changePage() method
+            $.mobile.changePage("#details-page");
+        });
+
+        //refresh list to enhance its styling.
+        $(this).listview("refresh");
+    });
+});
+
+//use pagebeforeshow
+//DONT USE PAGEINIT! 
+//the reason is you want this to happen every single time
+//pageinit will happen only once
+$(document).on("pagebeforeshow", "#details-page", function () {
+    //get from data - you put this here when the "a" wa clicked in the previous page
+    var info = $(this).data("info");
+    //string to put HTML in
+    var info_view = "";
+    //use for..in to iterate through object
+    for (var key in info) {
+        //Im using grid layout here.
+        //use any kind of layout you want.
+        //key is the key of the property in the object 
+        //if obj = {name: 'k'}
+        //key = name, value = k
+        info_view += '<div class="ui-grid-a"><div class="ui-block-a"><div class="ui-bar field" style="font-weight : bold; text-align: left;">' + key + '</div></div><div class="ui-block-b"><div class="ui-bar value" style="width : 75%">' + info[key] + '</div></div></div>';
+    }
+    //add this to html
+    $(this).find("[data-role=content]").html(info_view);
+});
+//]]>  
+
+</script>
+
+
+</head>
+<body>
+  <!--first page -->
+<div data-role="page" id="info-page">
+    <div data-role="header" data-theme="b">
+         <h1> Information</h1>
+
+    </div>
+    <div data-role="content">
+        <ul data-role="listview" id="prof-list" data-divider-theme="a" data-inset="true">
+            <li data-role="list-divider" data-theme="b" role="heading">Names</li>
+        </ul>
+    </div>
+</div>
+<!--second page -->
+<div data-role="page" id="details-page">
+    <div data-role="header" data-theme="b"><a href="#" data-rel="back" data-role="button">Go back</a>
+
+         <h1>Employee Details</h1>
+
+    </div>
+    <div data-role="content"></div>
+</div>
+  
+</body>
+
+
+</html>
+
